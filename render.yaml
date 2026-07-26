@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: dokuwiki
+    env: docker
+    plan: free
+    autoDeploy: true
