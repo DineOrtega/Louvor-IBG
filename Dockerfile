@@ -1,16 +1,12 @@
-FROM php:8.1-apache
+FROM webdevops/php-apache:8.2
 
-# Instalar wget e tar
-RUN apt-get update && apt-get install -y wget tar
+WORKDIR /app
 
-# Pasta padrão do Apache
-WORKDIR /var/www/html
-
-# Baixar e instalar o DokuWiki
-RUN wget https://download.dokuwiki.org/src/dokuwiki/dokuwiki-stable.tgz \
+RUN apt-get update && apt-get install -y wget tar \
+    && wget https://download.dokuwiki.org/src/dokuwiki/dokuwiki-stable.tgz \
     && tar -xvzf dokuwiki-stable.tgz \
-    && mv dokuwiki-*/* . \
+    && mv dokuwiki-*/* /app \
     && rm dokuwiki-stable.tgz
 
 # Permissões
-RUN chown -R www-data:www-data /var/www/html
+RUN chown -R application:application /app
