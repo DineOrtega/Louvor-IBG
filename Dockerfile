@@ -1,14 +1,7 @@
-FROM php:8.2-apache
+FROM php:8.1-apache
 
-# Instalar dependências necessárias para GD e outras extensões
-RUN apt-get update && apt-get install -y \
-    libpng-dev \
-    libjpeg62-turbo-dev \
-    libfreetype6-dev \
-    wget \
-    tar \
-    && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd mbstring xml
+# Instalar wget e tar
+RUN apt-get update && apt-get install -y wget tar
 
 # Pasta padrão do Apache
 WORKDIR /var/www/html
